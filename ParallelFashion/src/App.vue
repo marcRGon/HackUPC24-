@@ -29,6 +29,7 @@ function previousPage() {
   <div>
     <h1>Parallel Fashion</h1>
     <ImageGrid :products="theProducts" />
+    <br />
     <Pager :currentPage="currentPage" :totalPages="totalPages" @next="nextPage" @previous="previousPage" />
   </div>
 </template>
