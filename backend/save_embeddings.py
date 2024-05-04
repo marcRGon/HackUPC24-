@@ -58,6 +58,8 @@ for index, row in df.iterrows():
     if row2 is not None:
         result_df = pd.concat([result_df, row2], ignore_index=True)
     print(f"Processed {index+1}/{len(df)} rows.")
+    if index % 100 == 0:
+        result_df.to_csv('image_embeddings.csv', index=False)
 
 # Save the result DataFrame as a CSV file
 result_df.to_csv('image_embeddings.csv', index=False)
