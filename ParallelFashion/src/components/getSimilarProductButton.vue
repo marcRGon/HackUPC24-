@@ -2,13 +2,14 @@
 
 import { defineProps } from 'vue'
 
-const props = defineProps(['currentSelectedProductId'])
+const props = defineProps(['currentSelectedProductId', 'version'])
 
 const ENDPOINT = 'http://localhost:5000/similarProducts'
 
 async function getSimilarProducts() {
 	const id = props.currentSelectedProductId
-	const url = `${ENDPOINT}/${id}`
+  const version = props.version
+	const url = `${ENDPOINT}/${id}/${version}`
 	console.log(url)
   const response = await fetch(url, {
 	method: 'GET',

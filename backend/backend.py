@@ -20,10 +20,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 #     # Return the feature vector as a string
 #     #return jsonify({'embedding': feature_string})
 
-@app.route('/similarProducts/<id>', methods=['GET'])
+@app.route('/similarProducts/<id>/<version>', methods=['GET'])
 @cross_origin()
-def similar_products(id):
-    similar_ids = find_files_with_low_distance(id)
+def similar_products(id, version):
+    similar_ids = find_files_with_low_distance(id, version)
     return jsonify({'products': similar_ids})
 
 

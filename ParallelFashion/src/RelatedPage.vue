@@ -3,7 +3,6 @@ import products from './assets/images.json'
 import BigImage from './components/bigImage.vue';
 import ImageGrid from './components/imageGrid.vue';
 import Modal from './components/modal.vue';
-import GetSimilarProductButton from './components/getSimilarProductButton.vue';
 
 import { ref, defineProps } from 'vue'
 
@@ -26,12 +25,7 @@ const theProducts = ref(products.products.filter(product => ids.includes(product
       <ImageGrid :products="theProducts" @click-image="currentSelectedProduct = $event" />
     </div>
     <Modal v-if="currentSelectedProduct !== null" @close="currentSelectedProduct = null">
-      <BigImage :product="currentSelectedProduct" />
-      <br />
-      <div class="modalButtonContainer">
-        <button class="modalButton" @click="currentSelectedProduct = null">Close</button>
-        <GetSimilarProductButton :currentSelectedProductId="currentSelectedProduct.id"/>
-      </div>
+      <BigImage :product="currentSelectedProduct" @closeModal="currentSelectedProduct = null"/>
     </Modal>
   </div>
 </template>
@@ -44,19 +38,4 @@ const theProducts = ref(products.products.filter(product => ids.includes(product
   align-items: center;
 }
 
-.modalButtonContainer {
-  display: flex;
-  justify-content: center;
-}
-.modalButton {
-  background-color: white;
-  color: black;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-  &.highlight {
-    background-color: rgb(233, 217, 76);
-  }
-}
 </style>
