@@ -49,6 +49,10 @@ for index, row in df.iterrows():
 
         # Extract the image filename from the URL and remove the end of the string after '?'
         filename = os.path.basename(image_url).split('?')[0]
+        # Check if the image already exists in the save path
+        if os.path.exists(os.path.join(save_path, filename)):
+            print(f"Image {index+1}/{len(df)} already exists as {filename}. Skipping...")
+            return
         while True:
             # Send a GET request to download the image
             response = requests.get(image_url, headers=headers)
