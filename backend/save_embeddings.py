@@ -5,10 +5,11 @@ import os
 from warnings import simplefilter
 simplefilter(action="ignore", category=pd.errors.PerformanceWarning)
 
-image_dir = '../../../dataset'
+image_dir = 'dataset_FINAL'
+output_file = 'image_embeddings_POL_1.csv'
 
-START_ITEM_INDEX = 0
-END_ITEM_INDEX_EXCL = 99999999999999999999999
+START_ITEM_INDEX = 9800
+END_ITEM_INDEX_EXCL = 30000
 
 # Read the CSV file
 df = pd.read_csv('inditextech_hackupc_challenge_images.csv')
@@ -64,7 +65,7 @@ for index, row in df.iterrows():
         result_df = pd.concat([result_df, row2], ignore_index=True)
     print(f"Processed {index+1}/{len(df)} rows.")
     if index % 100 == 0:
-        result_df.to_csv('image_embeddings.csv', index=False)
+        result_df.to_csv(output_file, index=False)
 
 # Save the result DataFrame as a CSV file
-result_df.to_csv('image_embeddings.csv', index=False)
+result_df.to_csv(output_file, index=False)
