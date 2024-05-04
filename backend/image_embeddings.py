@@ -30,7 +30,11 @@ def preprocess_image(image_path):
 # Define a function to extract features from the image using ResNet
 def extract_features(image_path):
     # Preprocess the image
-    img = preprocess_image(image_path)
+    # Try to preprocess the image. If it fails, return None
+    try:
+        img = preprocess_image(image_path)
+    except:
+        return None
     # Forward pass through the ResNet model
     with torch.no_grad():
         features = resnet(img)
@@ -40,7 +44,7 @@ def extract_features(image_path):
     feature_vector = features.numpy()
     # Modify the shape from (1, 1000) to (1000,)
     feature_vector = feature_vector.squeeze()
-    print(feature_vector)
+    #print(feature_vector)
     return feature_vector
 
 # Example usage:
