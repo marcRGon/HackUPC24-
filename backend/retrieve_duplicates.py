@@ -8,7 +8,7 @@ def calculate_distance(embedding1, embedding2):
     distance = np.sqrt(np.sum((embedding1 - embedding2)**2))
     return distance
 
-def find_files_with_low_distance(index):
+def find_files_with_low_distance(index, version):
     def read_embedding(row):
         embedding = np.zeros(1000)
         for i in range(0, 1000):
@@ -21,7 +21,7 @@ def find_files_with_low_distance(index):
     # Read the CSV file into a pandas DataFrame
     df = pd.read_csv('image_embeddings_test.csv')
     
-    reference = df[df['index'] == index][df['version'] == 0]
+    reference = df[df['index'] == index][df['version'] == version]
     #print("Reference:", reference)
     reference_embedding = read_embedding(reference)
 
@@ -35,5 +35,5 @@ def find_files_with_low_distance(index):
     return duplicates
 
 # Usage example
-index = 1
-print(find_files_with_low_distance(index))
+#index = 4
+#print(find_files_with_low_distance(index))
