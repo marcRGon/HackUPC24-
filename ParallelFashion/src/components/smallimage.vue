@@ -1,15 +1,15 @@
 <script setup>
-import { defineProps, ref } from 'vue'
+import { defineEmits, defineProps, ref } from 'vue'
 
 const props = defineProps(['product'])
-const imgurl = ref(props.product.IMAGE_VERSION_1)
+const emit = defineEmits()
 
 </script>
 
 <template>
 
-  <div >
-	<img class="small-image" :src="props.product.IMAGE_VERSION_1" alt="product image" />
+  <div @click="emit('click-image', props.product)">
+    <img class="small-image" :src="props.product.IMAGE_VERSION_1" alt="product image" />
   </div>
 
 </template>
