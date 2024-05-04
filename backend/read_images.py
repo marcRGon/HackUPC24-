@@ -15,7 +15,7 @@ def is_nan(string):
 csv_file = 'inditextech_hackupc_challenge_images.csv'
 #domain_urls = ['https://static.zara.net/photos///2023/I/4/1/p/3265/206/072/2/w/2048/', 'https://sttc-stage-zaraphr.inditex.com/photos/2023/V/0/1/p/3046/081/756/2/']
 
-start_index = 3591
+start_index = 22000
 headers = {
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
     'accept-language': 'es-ES,es;q=0.9,en;q=0.8',
