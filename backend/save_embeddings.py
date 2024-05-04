@@ -7,6 +7,8 @@ simplefilter(action="ignore", category=pd.errors.PerformanceWarning)
 
 image_dir = '../../../dataset'
 
+START_ITEM_INDEX = 0
+
 # Read the CSV file
 df = pd.read_csv('inditextech_hackupc_challenge_images.csv')
 
@@ -44,8 +46,8 @@ result_df = pd.DataFrame(columns=columns)
 
 # Iterate over each row in the original DataFrame
 for index, row in df.iterrows():
-    #if index >= 10:
-    #    break
+    if index < START_ITEM_INDEX:
+       continue
     # Extract the file name from the URL
     row0 = create_row(index, 'IMAGE_VERSION_1', 0)
     row1 = create_row(index, 'IMAGE_VERSION_2', 1)

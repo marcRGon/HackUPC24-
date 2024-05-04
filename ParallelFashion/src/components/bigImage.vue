@@ -1,7 +1,9 @@
 <script setup>
-import { computed, defineProps, ref } from 'vue'
+import { computed, defineProps, ref, defineEmits } from 'vue'
+import GetSimilarProductButton from './getSimilarProductButton.vue'
 
 const props = defineProps(['product'])
+const emit = defineEmits()
 const images = computed(() => {
   if (!props.product.IMAGE_VERSION_3) {
     return [props.product.IMAGE_VERSION_1, props.product.IMAGE_VERSION_2]
@@ -31,6 +33,13 @@ function incrementVersionIndex(increment) {
       </button>
     </div>
 
+    <br />
+    
+    <div class="modalButtonContainer">
+      <button class="modalButton" @click="emit('closeModal')">Close</button>
+      <GetSimilarProductButton :currentSelectedProductId="product.id" :version="versionIndex" />
+    </div>
+
 </template>
 
 <style scoped>
@@ -55,6 +64,22 @@ function incrementVersionIndex(increment) {
   cursor: pointer;
   img {
     width: 50px;
+  }
+}
+
+.modalButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+.modalButton {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  &.highlight {
+    background-color: rgb(233, 217, 76);
   }
 }
 </style>
