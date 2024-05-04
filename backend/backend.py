@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-# from image_embeddings import extract_features
+from retrieve_duplicates import find_files_with_low_distance
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/similarProducts/<id>', methods=['GET'])
 @cross_origin()
 def similar_products(id):
-    similar_ids = [1, 2, 3] # TODO
+    similar_ids = find_files_with_low_distance(id)
     return jsonify({'products': similar_ids})
 
 
