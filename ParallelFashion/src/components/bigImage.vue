@@ -22,12 +22,17 @@ function incrementVersionIndex(increment) {
 <template>
 
   <div class="arrowContainer">
-      <button class="arrow-button" @click="incrementVersionIndex(-1)" draggable="false" 
+<<<<<<< Updated upstream
+      <button class="arrow-button" @click="incrementVersionIndex(-1)" >
+        <img src="../assets/left-arrow.png" alt="Previous" draggable="false"  />
+=======
+      <button class="arrow-button" @click="incrementVersionIndex(-1)" draggable="false" >
         <img src="../assets/left-arrow.png" alt="Previous" />
+>>>>>>> Stashed changes
       </button>
-      <img class="bigImage" :src="images[versionIndex]" alt="product image" />
-      <button class="arrow-button" @click="incrementVersionIndex(1)" draggable="false">
-        <img src="../assets/right-arrow.png" alt="Next" />
+      <img class="bigImage" :src="images[versionIndex]" alt="product image" draggable="false" />
+      <button class="arrow-button" @click="incrementVersionIndex(1)" >
+        <img src="../assets/right-arrow.png" alt="Next" draggable="false" />
       </button>
     </div>
 
