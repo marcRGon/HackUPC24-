@@ -23,7 +23,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/similarProducts/<id>', methods=['GET'])
 @cross_origin()
 def similar_products(id):
-    similar_ids = find_files_with_low_distance(id)
+    similar_ids = find_files_with_low_distance(id, 0)
     return jsonify({'products': similar_ids})
 
 

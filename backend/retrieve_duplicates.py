@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+import os
+from numpy import int64
 
 threshold = 40
 
@@ -20,20 +22,27 @@ def find_files_with_low_distance(index, version):
 
     # Read the CSV file into a pandas DataFrame
     df = pd.read_csv('image_embeddings_test.csv')
-    
-    reference = df[df['index'] == index][df['version'] == version]
+    # Take the row corresponding to the given index and version
+    filtered_df = df[(df['index'] == int64(index)) & (df['version'] == int64(version))]
+    if not filtered_df.empty:
+        reference = filtered_df.iloc[0]
+        reference_embedding = read_embedding(reference)
+    else:
+        print(f"No rows found with index {index} and version {version}")
+        return []
+    #reference = df[df['index'] == index][df['version'] == version]
     #print("Reference:", reference)
     reference_embedding = read_embedding(reference)
 
     # Iterate over the embedding vectors and calculate the distance
     for other_index, other_row in df.iterrows():
-        if other_row['index'] != index:
+        if other_row['index'] != int64(index):
             other_embedding = read_embedding(other_row)
             distance = calculate_distance(reference_embedding, other_embedding)
             if distance < threshold:
-                duplicates.append(other_row['index'])
+                duplicates.append(int(other_row['index']))
     return duplicates
 
 # Usage example
-#index = 4
-#print(find_files_with_low_distance(index))
+index = 6
+print(find_files_with_low_distance(index, 0))
