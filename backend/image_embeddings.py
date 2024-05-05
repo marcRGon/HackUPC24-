@@ -7,6 +7,8 @@ from PIL import Image
 resnet = models.resnet18(pretrained=True)
 # Set the model to evaluation mode
 resnet.eval()
+# Use GPU if possible.
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Define a function to preprocess the image
 def preprocess_image(image_path):
